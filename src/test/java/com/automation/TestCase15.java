@@ -38,6 +38,13 @@ public class TestCase15 extends BaseTest {
             17. Click 'Delete Account' button
             18. Verify that 'ACCOUNT DELETED!' and click 'Continue' button""")
     public void placeOrderRegisterBeforeCheckout() throws IOException, ParseException {
-
+        TestCase1.verifyThatHomePageIsVisibleSuccessfully();
+        TestCase14.verifyAccountCreatedAndClickContinueButton(name, email, "new");
+        TestCase14.verifyLoggedInAsUsernameAtTop(name);
+        TestCase14.verifyThatCartPageIsDisplayed();
+        new CartPage(getDriver()).proceedToCheckoutButtonClick();
+        TestCase14.verifyAddressDetailsAndReviewYourOrder("new");
+        TestCase14.verifySuccessMessageCongratulationsYourOrderHasBeenConfirmed();
+        TestCase1.verifyThatAccountDeletedIsVisibleAndClickContinueButton();
     }
 }

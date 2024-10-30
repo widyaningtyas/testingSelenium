@@ -26,14 +26,22 @@ public class TestCase13 extends BaseTest {
             8. Click 'View Cart' button
             9. Verify that product is displayed in cart page with exact quantity""")
     public void verifyProductQuantityInCart() {
-
+        TestCase1.verifyThatHomePageIsVisibleSuccessfully();
+        verifyProductDetailIsOpened();
+        verifyThatProductIsDisplayedInCartPageWithExactQuantity();
     }
 
     @Step("Verify product detail is opened")
     private void verifyProductDetailIsOpened() {
+        new HomePage(getDriver()).viewProduct1ButtonClick();
+        Assert.assertEquals(getDriver().getTitle(), "Automation Exercise - Product Details", "Verify product detail is opened");
     }
 
     @Step("Verify that product is displayed in cart page with exact quantity")
     private void verifyThatProductIsDisplayedInCartPageWithExactQuantity() {
+        List<String> quantity = new ProductDetailPage(getDriver()).increaseQuantity("4")
+                .addToCartButtonClick()
+                .viewCartButtonClick().getQuantity();
+        Assert.assertEquals(quantity.get(0), "4", "Verify that product is displayed in cart page with exact quantity");
     }
 }

@@ -24,14 +24,25 @@ public class TestCase10 extends BaseTest {
             6. Enter email address in input and click arrow button
             7. Verify success message 'You have been successfully subscribed!' is visible""")
     public void verifySubscriptionInHomePage() throws IOException, ParseException {
-
+        TestCase1.verifyThatHomePageIsVisibleSuccessfully();
+        verifyTextSubscription();
+        verifySuccessMessageYouHaveBeenSuccessfullySubscribedIsVisible();
     }
 
     @Step("Verify text 'SUBSCRIPTION")
     public static void verifyTextSubscription() {
+        String subscriptionText = new HomePage(getDriver())
+                .getSubscription()
+                .getText();
+        Assert.assertEquals(subscriptionText, "SUBSCRIPTION", "Verify text 'SUBSCRIPTION'");
     }
 
     @Step("Verify success message 'You have been successfully subscribed!' is visible")
     public static void verifySuccessMessageYouHaveBeenSuccessfullySubscribedIsVisible() throws IOException, ParseException {
+        String messageAlert = new HomePage(getDriver())
+                .fillSubscribe()
+                .getAlertSuccessSubscribe()
+                .getText();
+        Assert.assertEquals(messageAlert, "You have been successfully subscribed!", "Verify success message 'You have been successfully subscribed!' is visible");
     }
 }
