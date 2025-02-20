@@ -8,9 +8,8 @@ pipeline {
         }
         stage('Run test') {
             steps {
-                sh 'clean install'
                 withMaven {
-                    sh 'mvn clean verify'
+                    sh './mvnw clean verify'
                 }
             }
         }
