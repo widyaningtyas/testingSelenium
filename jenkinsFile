@@ -9,7 +9,7 @@ pipeline {
         stage('Run test') {
             steps {
 
-                withMaven(maven: '3.8.2') {
+                withMaven(maven: 'HOME_MAVEN') {
                     sh 'mvn -v'
                     sh 'which mvn'
                     sh './mvnw clean verify'
