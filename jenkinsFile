@@ -8,8 +8,8 @@ pipeline {
         }
         stage('Run test') {
             steps {
-                echo 'mvn -v'
-                echo 'which mvn'
+                sh 'mvn -v'
+                sh 'which mvn'
                 withMaven {
 
                     sh './mvnw clean verify'
